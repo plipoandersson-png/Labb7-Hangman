@@ -18,7 +18,7 @@ namespace Labb7_Hangman
             string chosenWord = CreateWord();
             char[] hiddenWord = new char[chosenWord.Length];
 
-            for (int i = 0; i < chosenWord.Length; i++)
+            for (int i = 0; i < chosenWord.Length; i++) // Took a while to figure out how to make it write the blank letters so i eventually asked chatgpt for some clues
             {
                 hiddenWord[i] = '_';
             }
