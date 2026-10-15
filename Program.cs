@@ -17,6 +17,7 @@ namespace Labb7_Hangman
             int lives = 6;
             string chosenWord = CreateWord();
             char[] hiddenWord = new char[chosenWord.Length];
+            List<char> userGuesses = new List<char>();
 
             for (int i = 0; i < chosenWord.Length; i++) // Took a while to figure out how to make it write the blank letters so i eventually asked chatgpt for some clues
             {
@@ -28,12 +29,13 @@ namespace Labb7_Hangman
                 Console.WriteLine("\nWord: " + new string(hiddenWord));
                 Console.WriteLine($"Lives: {lives}");
 
-                List<char> userGuesses = new List<char>();
+                
                 Console.WriteLine("Guess a letter of the word!");
                 Console.Write("Your guess: ");
                 string userGuess = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(userGuess)) // Used Chatgpt to find out how this works
+                if (string.IsNullOrWhiteSpace(userGuess) || !char.IsLetter(userGuess[0])) // Used Chatgpt to find out how this works
                 {
+                    Console.WriteLine("ERROR Write a valid letter");
                     continue;
                 }
                 char guess = char.ToLower(userGuess[0]);
@@ -62,22 +64,17 @@ namespace Labb7_Hangman
                     lives--;
                     DrawHangman(lives);
                 }
-                if (new string(hiddenWord) == chosenWord)
-                {
-                    Console.WriteLine($"You win! The word was {chosenWord}.");
-                }
-                else
-                {
-                    Console.WriteLine($"You lose! The word was {chosenWord}.");
-                }
-                for (int i = 0; i < chosenWord.Length; i++)
-                {
-                    if (chosenWord[i] == guess)
-                    {
-                        hiddenWord[i] = guess;
-                    }
-                }
+               
             }
+            if (new string(hiddenWord) == chosenWord)
+            {
+                Console.WriteLine($"You win! The word was {chosenWord}.");
+            }
+            else
+            {
+                Console.WriteLine($"You lose! The word was {chosenWord}.");
+            }
+            
         }
         static string CreateWord()
         {
