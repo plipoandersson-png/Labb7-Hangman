@@ -62,7 +62,7 @@ namespace Labb7_Hangman
                 {
                     Console.WriteLine("Wrong guess");
                     lives--;
-                    DrawHangman(lives);
+                    Draw.DrawHangman(lives);
                 }
                
             }
@@ -82,43 +82,7 @@ namespace Labb7_Hangman
             var chosenWord = new Random().Next(words.Length); // I used chatgpt to find out how to get a random word
             return words[chosenWord];
         }
-        static void DrawHangman(int lives) // I used chatgpt to write this method for drawing the hangman
-        {
-            Console.WriteLine("  +---+");
-            Console.WriteLine("  |   |");
 
-            // Head
-            Console.WriteLine(lives <= 5 ? "  |   O" : "  |");
-
-            // Torso and arms
-            if (lives <= 4)
-            {
-                string leftArm = lives <= 3 ? "/" : " ";
-                string rightArm = lives <= 2 ? "\\" : " ";
-
-                Console.WriteLine($"  |  {leftArm}|{rightArm}");
-            }
-            else
-            {
-                Console.WriteLine("  |");
-            }
-
-            // Legs
-            if (lives <= 1)
-            {
-                string leftLeg = lives <= 1 ? "/" : " ";
-                string rightLeg = lives <= 0 ? "\\" : " ";
-
-                Console.WriteLine($"  |  {leftLeg} {rightLeg}");
-            }
-            else
-            {
-                Console.WriteLine("  |");
-            }
-
-            Console.WriteLine("  |");
-            Console.WriteLine("=========");
-        }
     }
 }
 
