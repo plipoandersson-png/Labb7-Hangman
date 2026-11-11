@@ -33,6 +33,7 @@ namespace Labb7_Hangman
                 Console.WriteLine("Guess a letter of the word!");
                 Console.Write("Your guess: ");
                 string userGuess = Console.ReadLine();
+                userGuess.ToLower();
                 if (string.IsNullOrWhiteSpace(userGuess) || !char.IsLetter(userGuess[0])) // Used Chatgpt to find out how this works
                 {
                     Console.WriteLine("ERROR Write a valid letter");
