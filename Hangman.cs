@@ -23,17 +23,34 @@ namespace Labb7_Hangman
             while (gameRunning)
             {
                 char guess = HangmanMenu();
-                bool correctGuess = hangmanWord.GuessLetter(guess);
-                if (correctGuess)
+               
+                GuessResult result = hangmanWord.GuessLetter(guess);
+                
+                switch(result)
                 {
-                    // do something
+                    case GuessResult.Correct:
+                        // do nothing i guess..
+                        break;
+                    case GuessResult.Incorrect:
+                        lives--;
+                        Draw.DrawHangman(lives);
+                        break;
+                    case GuessResult.AlreadyGuessed:
+                        Console.WriteLine("You have already guessed that letter!");
+                        break;
                 }
-                else
-                {
-                    lives--;
-                }
+
                 if(lives == 0)
                 {
+                    Console.WriteLine("Sorry you ran out of lives and died :(");
+                    gameRunning = false;
+                }
+                string hiddenWord = hangmanWord.GetHiddenWord();
+                Console.WriteLine($"Word: {hiddenWord}");
+
+                if (gameRunning && !hiddenWord.Contains("_"))
+                {
+                    Console.WriteLine("Congratulations you won!!!");
                     gameRunning = false;
                 }
             }
@@ -45,13 +62,14 @@ namespace Labb7_Hangman
             {
                 Console.WriteLine("Welcome to the hangman game!");
                 Console.WriteLine("Try guessing a letter!");
+                
                 Console.Write("Your guess: ");
                 string userGuess = Console.ReadLine();
 
                 
                 if (char.TryParse(userGuess, out char guess) && char.IsLetter(guess))
                 {
-                    return guess;
+                    return char.ToLower(guess); // ToLower to make sure its all lowercase since the random words are put to always be lowercase
                 }
                 else
                 {
