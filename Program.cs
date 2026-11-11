@@ -8,9 +8,7 @@ namespace Labb7_Hangman
     {
         static void Main(string[] args)
         {
-
-            Hangman hangman = new Hangman();
-            hangman.PlayHangman();
+          
         }
         
     }
