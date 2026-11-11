@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
+using Labb7_Hangman;
 
 namespace Labb7_Hangman
 {
@@ -7,13 +8,9 @@ namespace Labb7_Hangman
     {
         static void Main(string[] args)
         {
-            WordGenerator generator = new WordGenerator();
 
-            string selectedWord = generator.Randomizer();
-
-            HangmanWord hangmanWord = new HangmanWord(selectedWord);
-
-            Console.WriteLine(selectedWord);
+            Hangman hangman = new Hangman();
+            hangman.PlayHangman();
         }
         
     }
