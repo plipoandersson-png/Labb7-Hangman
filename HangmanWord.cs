@@ -42,10 +42,11 @@ namespace Labb7_Hangman
             {
                 return GuessResult.AlreadyGuessed;
             }
-          
+            _guessedLetters.Add(letter);
+
             if (_secretWord.Contains(letter))
             {
-                _guessedLetters.Add(letter);
+                
                 return GuessResult.Correct;
             }
             return GuessResult.Incorrect;
